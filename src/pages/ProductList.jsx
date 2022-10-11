@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
-import { mobile } from "../responsive";
+import { mobile, SurfaceDuo, GalaxyFold } from "../responsive";
 
 const Container = styled.div`
     
@@ -12,6 +12,8 @@ const Container = styled.div`
 const Title = styled.h1`
     margin: 20px;
     ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+    ${SurfaceDuo({ width: "0px 20px", display: "flex", flexDirection: "column", })}
+    ${GalaxyFold({ width: "0px 20px", display: "flex", flexDirection: "column", })}
 `
 
 const FilterText = styled.span`
@@ -19,7 +21,8 @@ const FilterText = styled.span`
     font-weight: 600;
     margin-right: 20px;
     ${mobile({ marginRight: "0px" })}
-    
+    ${SurfaceDuo({ marginRight: "0px", display: "flex" })}
+    ${GalaxyFold({ marginRight: "0px", display: "flex", fontSize: "16px" })}
 `
 
 const FilterContainer = styled.div`
@@ -32,9 +35,13 @@ const Filter = styled.div`
 `
 
 const Select = styled.select`
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     margin-right: 20px;
-    ${mobile({ margin: "10px 0px" })}
+    ${mobile({ margin: "10px 0px", })}
+    ${SurfaceDuo({ margin: "10px 0px" })}
+    ${GalaxyFold({ margin: "10px 0px" })}
 `
 
 const Option = styled.option`
