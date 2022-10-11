@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Announcement from "./Announcement";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import Newsletter from "./Newsletter";
-import Products from "./Products";
+import Announcement from "../components/Announcement";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Newsletter from "../components/Newsletter";
+import Products from "../components/Products";
 
 const Container = styled.div`
     
@@ -16,6 +16,7 @@ const FilterText = styled.span`
     font-size: 20px;
     font-weight: 600;
     margin-right: 20px;
+    
 `
 
 const FilterContainer = styled.div`

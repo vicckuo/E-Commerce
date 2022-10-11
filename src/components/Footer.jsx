@@ -26,7 +26,7 @@ const SocialIcon = styled.div`
     height: 40px;
     border-radius: 50%;
     color: white;
-    background-color: #${props => props.color};
+    background-color: #${(props) => props.color};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,13 +109,13 @@ const Footer = () => {
             <Right>
                 <Title>聯絡我們</Title>
                 <ContactItem>
-                    <Room styled={{ marginRight: "10px" }} /> 嘉義市xxxxxxxxx
+                    <Room style={{ marginRight: "10px" }} /> 嘉義市xxxxxxxxx
                 </ContactItem>
                 <ContactItem>
-                    <Phone styled={{ marginRight: "10px" }} /> 0912-xxx-xxx
+                    <Phone style={{ marginRight: "10px" }} /> 0912-xxx-xxx
                 </ContactItem>
                 <ContactItem>
-                    <MailOutline styled={{ marginRight: "10px" }} /> services@gmail.com
+                    <MailOutline style={{ marginRight: "10px" }} /> services@gmail.com
                 </ContactItem>
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
             </Right>
