@@ -58,7 +58,7 @@ const Logo = styled.h1`
     font-weight: bold;
     ${mobile({ fontSize: "20px" })}
     ${SurfaceDuo({ fontSize: "20px" })}
-    ${GalaxyFold({ fontSize: "14px" })}
+    ${GalaxyFold({ display: "none" })}
 `
 
 const Right = styled.div`
@@ -66,9 +66,9 @@ const Right = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    ${mobile({ justifyContent: "center" })}
+    ${mobile({ justifyContent: "left" })}
     ${SurfaceDuo({ justifyContent: "center" })}
-    ${GalaxyFold({ justifyContent: "center" })}
+    ${GalaxyFold({ justifyContent: "center", flex: 2 })}
 `
 
 const MenuItem = styled.div`

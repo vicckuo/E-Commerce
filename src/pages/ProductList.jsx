@@ -12,8 +12,8 @@ const Container = styled.div`
 const Title = styled.h1`
     margin: 20px;
     ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
-    ${SurfaceDuo({ width: "0px 20px", display: "flex", flexDirection: "column", })}
-    ${GalaxyFold({ width: "0px 20px", display: "flex", flexDirection: "column", })}
+    ${SurfaceDuo({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+    ${GalaxyFold({ width: "0px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" })}
 `
 
 const FilterText = styled.span`
@@ -28,6 +28,7 @@ const FilterText = styled.span`
 const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    ${GalaxyFold({ flexDirection: "column", alignItems: "center", justifyContent: "center" })}
 `
 
 const Filter = styled.div`
@@ -55,7 +56,8 @@ const ProductList = () => {
             <Announcement />
             <Title>洋裝</Title>
             <FilterContainer>
-                <Filter><FilterText>過濾商品：</FilterText>
+                <Filter>
+                    <FilterText>過濾商品：</FilterText>
                     <Select>
                         <Option disabled selected>
                             選擇顏色
@@ -78,7 +80,8 @@ const ProductList = () => {
                         <Option>XL</Option>
                     </Select>
                 </Filter>
-                <Filter><FilterText>排序商品：</FilterText>
+                <Filter>
+                    <FilterText>排序商品：</FilterText>
                     <Select>
                         <Option selected>
                             最新

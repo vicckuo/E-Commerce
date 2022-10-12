@@ -10,14 +10,14 @@ export const mobile = (props) => {
 
 export const SurfaceDuo = (props) => {
     return css`
-        @media only screen and (max-width: 540px)  {
+        @media only screen and (max-width: 717px)  {
             ${props}
     }
     `
 }
 export const GalaxyFold = (props) => {
     return css`
-        @media only screen and (max-width: 280px)  {
+        @media only screen and (max-width: 360px)  {
             ${props}
     }
     `
