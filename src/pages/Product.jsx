@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile, GalaxyFold, SurfaceDuo } from "../responsive";
+import { addProduct } from "../redux/cartRedux"
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``
 
@@ -136,6 +138,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1)
     const [color, setColor] = useState("")
     const [size, setSize] = useState("")
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getProduct = async () => {
@@ -155,6 +158,10 @@ const Product = () => {
         } else {
             setQuantity(quantity + 1)
         }
+    }
+
+    const handleClick = () => {
+        dispatch(addProduct({ ...product, quantity, color, size }))
     }
 
     return (
@@ -191,7 +198,7 @@ const Product = () => {
                             <Amount>{quantity}</Amount>
                             <Add onClick={() => handleQuantity("inc")} />
                         </AmountContainer>
-                        <Button>加入購物車</Button>
+                        <Button onClick={handleClick}>加入購物車</Button>
                     </AddContainer>
                 </InfoContainer>
             </Wrapper>
