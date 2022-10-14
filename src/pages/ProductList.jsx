@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -50,27 +52,40 @@ const Option = styled.option`
 `
 
 const ProductList = () => {
+    const location = useLocation()
+    const cat = location.pathname.split("/")[2]
+    const [filters, setFilters] = useState({})
+    const [sort, setSort] = useState("newest")
+
+    const handleFilters = (e) => {
+        const value = e.target.value
+        setFilters({
+            ...filters,
+            [e.target.name]: value
+        })
+    }
+
     return (
         <Container>
             <Navbar />
             <Announcement />
-            <Title>洋裝</Title>
+            <Title>{cat}</Title>
             <FilterContainer>
                 <Filter>
                     <FilterText>過濾商品：</FilterText>
-                    <Select>
-                        <Option disabled selected>
+                    <Select name="color" onChange={handleFilters}>
+                        <Option disabled>
                             選擇顏色
                         </Option>
-                        <Option>白色</Option>
-                        <Option>黑色</Option>
-                        <Option>紅色</Option>
-                        <Option>藍色</Option>
-                        <Option>黃色</Option>
-                        <Option>綠色</Option>
+                        <Option>white</Option>
+                        <Option>black</Option>
+                        <Option>red</Option>
+                        <Option>blue</Option>
+                        <Option>yellow</Option>
+                        <Option>green</Option>
                     </Select>
-                    <Select>
-                        <Option disabled selected>
+                    <Select name="size" onChange={handleFilters}>
+                        <Option disabled>
                             選擇尺寸
                         </Option>
                         <Option>XS</Option>
@@ -82,16 +97,16 @@ const ProductList = () => {
                 </Filter>
                 <Filter>
                     <FilterText>排序商品：</FilterText>
-                    <Select>
-                        <Option selected>
+                    <Select onChange={e => setSort(e.target.value)}>
+                        <Option value="newest">
                             最新
                         </Option>
-                        <Option>價格(小至大)</Option>
-                        <Option>價格(大至小)</Option>
+                        <Option value="asc">價格(小至大)</Option>
+                        <Option value="desc">價格(大至小)</Option>
                     </Select>
                 </Filter>
             </FilterContainer>
-            <Products />
+            <Products cat={cat} filters={filters} sort={sort} />
             <Newsletter />
             <Footer />
         </Container>

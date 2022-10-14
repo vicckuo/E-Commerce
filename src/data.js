@@ -27,16 +27,19 @@ export const categories = [
         id: 1,
         img: "https://cdn.pixabay.com/photo/2021/07/10/10/49/women-6401177_960_720.jpg",
         title: "短袖",
+        cat: "tshirt"
     },
     {
         id: 2,
         img: "https://cdn.pixabay.com/photo/2014/08/05/10/31/waiting-410328_960_720.jpg",
         title: "長袖",
+        cat: "jean"
     },
     {
         id: 3,
         img: "https://cdn.pixabay.com/photo/2015/09/05/23/26/girl-926225_960_720.jpg",
         title: "大衣",
+        cat: "coat"
     },
 ]
 

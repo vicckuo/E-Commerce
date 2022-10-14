@@ -96,7 +96,7 @@ const Navbar = () => {
                     <MenuItem>註冊</MenuItem>
                     <MenuItem>登入</MenuItem>
                     <MenuItem>
-                        <Badge badgeContent={4} color="primary">
+                        <Badge overlap="rectangular" badgeContent={4} color="primary">
                             <ShoppingBasketOutlined />
                         </Badge>
                     </MenuItem>
