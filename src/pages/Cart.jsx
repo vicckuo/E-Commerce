@@ -1,11 +1,18 @@
 import { Add, Remove } from "@material-ui/icons";
-import React from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile, SurfaceDuo, GalaxyFold } from "../responsive";
+import StripeCheckout from "react-stripe-checkout"
+import { userRequest } from "../requestMethod"
+import { useNavigate } from "react-router-dom";
+
+
+
+const Key = process.env.REACT_APP_STRIPE
 
 const Container = styled.div``
 
@@ -166,6 +173,29 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart)
+    const [stripeToken, setStripeToken] = useState(null)
+    const navigate = useNavigate()
+
+    const onToken = (token) => {
+        setStripeToken(token)
+    }
+
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                const res = await userRequest.post("/checkout/payment", {
+                    tokenId: stripeToken.id,
+                    amount: cart.total * 100,
+                })
+                navigate("/success", {
+                    stripeData: res.data,
+                    products: cart,
+                });
+            } catch { }
+        }
+        stripeToken && makeRequest()
+    }, [stripeToken, cart.total, navigate])
+
     return (
         <Container>
             <Navbar />
@@ -188,7 +218,7 @@ const Cart = () => {
                     <Info>
                         {cart.products.map(product => (
 
-                            <Product>
+                            <Product key={product._id}>
                                 <ProductDetail>
                                     <Image src={product.img} />
                                     <Details>
@@ -228,7 +258,18 @@ const Cart = () => {
                             <SummaryItemText >總結</SummaryItemText>
                             <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>立即結帳</Button>
+                        <StripeCheckout
+                            name="胡老師愛團購"
+                            image="https://avatars.githubusercontent.com/u/59826234?v=4"
+                            billingAddress
+                            shippingAddress
+                            description={`總計： $${cart.total}`}
+                            amount={cart.total * 100}
+                            token={onToken}
+                            stripeKey={Key}
+                        >
+                            <Button>立即結帳</Button>
+                        </StripeCheckout>
                     </Summary>
                 </Bottom>
             </Wrapper>
