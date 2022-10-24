@@ -65,8 +65,8 @@ const Register = () => {
                     <Input placeholder="姓氏" />
                     <Input placeholder="使用者帳號" />
                     <Input placeholder="Email" />
-                    <Input placeholder="密碼" />
-                    <Input placeholder="確認密碼" />
+                    <Input placeholder="密碼" type="password" />
+                    <Input placeholder="確認密碼" type="password" />
                     <Agreement>
                         點擊註冊，即表示您已閱讀並同意本網站的 <b>隱私權政策</b>
                     </Agreement>

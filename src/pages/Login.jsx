@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { login } from "../redux/apiCalls";
 import { mobile, SurfaceDuo, GalaxyFold } from "../responsive";
 
 const Container = styled.div`
@@ -49,6 +52,10 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
+    &:disabled{
+        color: green;
+        cursor: not-allowed;
+    }
 `
 
 const Link = styled.a`
@@ -58,21 +65,36 @@ const Link = styled.a`
     cursor: pointer;
 `
 
+const Error = styled.span`
+    color: red;
+
+`
+
 const Login = () => {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
+    const { isFetching, error } = useSelector(state => state.user)
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        login(dispatch, { username, password })
+    }
     return (
         <Container>
             <Wrapper>
                 <Title>登入
                 </Title>
                 <Form>
-                    <Input placeholder="使用者帳號" />
-                    <Input placeholder="密碼" />
-                    <Button>登入</Button>
+                    <Input placeholder="使用者帳號" onChange={(e) => setUsername(e.target.value)} />
+                    <Input type="password" placeholder="密碼" onChange={(e) => setPassword(e.target.value)} />
+                    <Button onClick={handleClick} disabled={isFetching}>登入</Button>
+                    {error && <Error > 似乎有一些錯誤...</Error>}
                     <Link>忘記密碼</Link>
                     <Link>還沒有帳號？註冊一個帳號</Link>
                 </Form>
             </Wrapper>
-        </Container>
+        </Container >
     );
 };
 
